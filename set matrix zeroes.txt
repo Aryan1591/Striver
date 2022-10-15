@@ -1,0 +1,70 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int col=1;
+        int row=1;
+         for(int i=0;i<matrix[0].length;i++)
+         {
+             if(matrix[0][i]==0)
+             {
+                 col=0; //found 0 in first row
+             }
+         }
+         for(int i=0;i<matrix.length;i++)
+         {
+             if(matrix[i][0]==0)
+             {
+                 row=0; //found 0 in 1st col
+             }
+         }
+        
+         for(int i=1;i<matrix.length;i++)
+         {
+             for(int j=1;j<matrix[0].length;j++)
+             {
+                  if(matrix[i][j]==0)
+                  {
+                      //set position of 1st col and 1st row to 0
+                      matrix[0][j]=0;
+                      matrix[i][0]=0;
+                  }
+             }
+         }
+         for(int i=1;i<matrix[0].length;i++)
+         {
+              if(matrix[0][i]==0)
+              {
+                  for(int j=1;j<matrix.length;j++)
+                  {
+                      matrix[j][i]=0;
+                  }
+              }
+         }
+        
+         for(int i=1;i<matrix.length;i++)
+         {
+             if(matrix[i][0]==0)
+             {
+                 for(int j=1;j<matrix[0].length;j++)
+                 {
+                     matrix[i][j]=0;
+                 }
+             }
+         }
+         if(col==0)
+         {
+             for(int i=0;i<matrix[0].length;i++)
+             {
+                 matrix[0][i]=0;
+             }
+         }
+        if(row==0)
+        {
+            for(int i=0;i<matrix.length;i++)
+            {
+                matrix[i][0]=0;
+            }
+        }
+        
+        
+    }
+}

@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class Solution {
+
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+     
+		 int pre_xor=0;
+		
+	
+		 for(int i=0;i<arr.size();i++)
+		 {
+		   pre_xor=pre_xor^arr.get(i);
+			   
+		 }
+		 for(int i=1;i<=n;i++)
+		 {
+			 pre_xor=pre_xor^i;
+		 }
+		 int x=0;
+		 int y=0;
+		 int right_most= ((pre_xor)&(~(pre_xor-1)));
+		 for(int i=0;i<arr.size();i++)
+		 {
+			  if(((arr.get(i))&(right_most))!=0)
+			  {
+				  x=x^arr.get(i);
+			  }
+			 else{
+				 y=y^arr.get(i);
+			 }
+		 }
+		 for(int i=1;i<=n;i++)
+		 {
+			 if(((i)&(right_most))!=0)
+			 {
+				 x=x^i;
+			 }
+			 else{
+				 y=y^i;
+			 }
+		 }
+		 int count=0;
+		  for(int i=0;i<arr.size();i++)
+		  {
+			   if(arr.get(i)==x)
+			   {
+				   count++;
+			   }
+		  }
+		//x is missing
+		   int ans[]=new int[2];
+		     if(count==2)
+			 {
+				 ans[0]=y;
+				 ans[1]=x;
+			 }
+		else{
+			  ans[0]=x;
+			  ans[1]=y;
+		}
+		return ans;
+    }
+}

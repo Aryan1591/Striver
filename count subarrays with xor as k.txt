@@ -1,0 +1,32 @@
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        HashMap<Integer,Integer>h=new HashMap<Integer,Integer>();
+         int pre_xor=0;
+         int ans=0;
+          for(int i=0;i<A.size();i++)
+          {
+              pre_xor=pre_xor^A.get(i);
+               int remaining_part=pre_xor^B;
+               if(h.containsKey(remaining_part))
+               {
+                   ans=ans+h.get(remaining_part);
+               }
+               if(pre_xor==B)
+               {
+                   ans++;
+               }
+               
+               if(!h.containsKey(pre_xor))
+               {
+                   h.put(pre_xor,1);
+               }
+               else{
+                   h.put(pre_xor,h.get(pre_xor)+1);
+               }
+             
+
+          }
+          return ans;
+
+    }
+}

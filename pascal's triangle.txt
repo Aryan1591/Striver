@@ -1,0 +1,39 @@
+import java.util.*;
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+       
+       List<List<Integer>> a = new ArrayList<List<Integer>>();
+          for(int i=0;i<numRows;i++)
+          {
+              a.add(new ArrayList<Integer>());
+          }
+          a.get(0).add(1);
+          for(int i=1;i<numRows;i++)
+          {
+                if(i==1)
+                {
+                    a.get(1).add(1);
+                    a.get(1).add(1);
+                }
+              else{
+                  for(int j=0;j<a.get(i-1).size();j++)
+                  {
+                      if(j==0)
+                      {
+                          a.get(i).add(a.get(i-1).get(j));
+                      }
+                      else if(j==a.get(i-1).size()-1)
+                      {
+                          a.get(i).add(a.get(i-1).get(j-1)+a.get(i-1).get(j));
+                          a.get(i).add(a.get(i-1).get(j));
+                      }
+                      else{
+                          a.get(i).add(a.get(i-1).get(j-1)+a.get(i-1).get(j));
+                      }
+                  }
+              }
+          }
+         return a;
+        
+    }
+}

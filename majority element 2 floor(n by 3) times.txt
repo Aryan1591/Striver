@@ -1,0 +1,51 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        ArrayList<Integer>ans=new ArrayList<Integer>();
+        int count1=0;
+        int count2=0;
+         int majority_1=-1;
+         int majority_2=-1; 
+           for(int i=0;i<nums.length;i++)
+           {
+               if(majority_1==nums[i])count1++;
+               else if(majority_2==nums[i])count2++;
+                else if(count1==0)
+                {
+                    majority_1=nums[i];
+                     count1=1;
+                }
+                else if(count2==0)
+                {
+                    majority_2=nums[i];
+                     count2=1;
+                }
+                else{
+                    count1--;
+                    count2--;
+                }
+           }
+        //check whether majority are correct elements
+        int n=nums.length;
+         count1=0;
+         count2=0;
+           for(int i=0;i<n;i++)
+           {
+              if(nums[i]==majority_1)
+              {
+                  count1++;
+              }
+               if(nums[i]==majority_2)
+               {
+                   count2++;
+               }
+           }
+          if(count1>(n/3)){
+              ans.add(majority_1);
+          }
+          if(count2>(n/3) && majority_2!=majority_1)
+          {
+              ans.add(majority_2);
+          }
+         return ans;
+    }
+}
